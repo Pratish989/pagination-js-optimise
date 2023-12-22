@@ -1,0 +1,96 @@
+
+#page-button{
+ font-size: 1.1rem;
+ background-color: transparent;
+ border: none;
+ margin: 0.25rem 0.25rem;
+ cursor: pointer;
+ border-radius: .2rem;
+}
+
+.button-class{
+ cursor: pointer;
+ margin: 1px;
+ padding: 1px 6px;
+ font-size: 1.1rem;
+ background-color: transparent;
+ border: round;
+ margin: 0.25rem 0.25rem;
+ cursor: pointer;
+ border-radius: .2rem;
+}
+
+
+.button-class:hover{
+ cursor: pointer;
+ margin: 1px;
+ padding: 1px 6px;
+ font-size: 1.1rem;
+ background-color: pink;
+ border: round;
+ margin: 0.25rem 0.25rem;
+ cursor: pointer;
+ border-radius: .2rem;
+}
+
+
+.button-section{
+ width: calc(100% - 2rem);
+ display: flex;
+ align-items: center;
+ position: absolute;
+ bottom: 0;
+ padding: 1rem 0;
+ justify-content: center;
+}
+
+.navigation-button{
+ font-size: 1.1rem;
+ background-color: transparent;
+ border: none;
+ margin: 0.25rem 0.25rem;
+ cursor: pointer;
+ height: 2.5rem;
+ width: 2.5rem;
+ border-radius: .2rem;
+}
+
+
+
+.navigation-button:hover{
+ font-size: 1.1rem;
+ background-color: pink;
+ border: none;
+ margin: 0.25rem 0.25rem;
+ cursor: pointer;
+ height: 2.5rem;
+ width: 2.5rem;
+ border-radius: .2rem;
+}
+
+.button-section{
+ cursor: pointer;
+ margin: 2px;
+ padding: 2px;
+ display: flex;
+ margin-top: 100px;
+ position: absolute;
+}
+
+
+.button-class.active{
+ margin: 2px;
+ color: red;
+ padding: 1px 6px;
+}
+
+
+
+#previous-button{
+ cursor: pointer;
+}
+
+
+#next-button{
+ cursor: pointer;
+}

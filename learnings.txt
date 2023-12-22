@@ -1,0 +1,4 @@
+[...Array(totalItems)] - you can create arrays like this using spread operator 
+
+.fill(value) -> this fills the values in that array but all the values are same.
+

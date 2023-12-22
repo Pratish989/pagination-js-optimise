@@ -1,0 +1,119 @@
+  // arr.slice(startindex, endindex).forEach(item => ul.appendChild(Object.assign(document.createElement("li"), {textContent: `Item ${item}`})), pageItems.appendChild(ul));
+
+// key does not change the original array
+//250
+// perpage11
+
+// Object.keys() -> returns keys of the objects
+
+// Array.apply() -> it provides functionality of passing array in arguments in array function 
+
+// Function.prototype.apply allows you to provide arguments to a function in the form of an array.
+//  So calling Array.apply (which just inherits its .apply() method from Function's prototype; any function that is an instance of Function would allows you to do this),
+
+
+// map creates new array with any operation performed on them.
+// let x = Object.keys(Array.apply(0, Array(totalItems)))
+
+
+
+// Array.apply() -> it is creating array of length totalitems and it adds all the elemts with 0 
+// let arr = [];
+// console.log(x)
+
+// .map(Number)
+// console.log(arr.apply())
+// Array.from({length : totalItems} , (i,k)=> arr.push(k + 1))
+
+
+let totalItems = 120;
+
+const generateArray = (n, arr = []) => (
+  n <= totalItems ? generateArray(n + 1, [...arr, n]) : arr
+);
+
+let arr = generateArray(1);
+console.log(arr);
+  
+
+
+
+const previousButton = document.getElementById("previous-button");
+const nextButton = document.getElementById("next-button");
+const pageButton = document.getElementById("page-button");
+const pageItems = document.getElementById("pagination-items");
+let totalItems = 120;
+const resetArray = (start, stop, step) => {
+  pageItems.innerHTML = "";
+  let ul = document.createElement("ul");
+  return Array.from({ length: (stop - start) / step + 1 }, (i, index) => {
+    let li = document.createElement("li");
+    li.innerHTML = "";
+    li.textContent = `Item ${start + index * step}`;
+    console.log(start) // at every page its first element is start.
+    console.log(index) // index is that item
+    console.log(step)
+    console.log(`Item ${start + index * step}`)
+    ul.appendChild(li);
+    pageItems.appendChild(ul);
+  });
+};
+
+let currentPage = 1;
+let itemsPerPage = 10;
+let totalPages = Math.ceil(totalItems / itemsPerPage);
+
+const renderButton = (item) => {
+  const button = document.createElement("button");
+  button.className = "button-class";
+  button.innerHTML = item;
+  button.setAttribute("id", item);
+  pageButton.appendChild(button);
+};
+
+Array.from({ length: totalPages }, (i, k) => renderButton(k + 1));
+
+const arrayPage = (pageNo) => {
+  console.log(pageNo);
+  currentPage = pageNo;
+  handleButtons(currentPage);
+  handleActivePageNumber(currentPage);
+  startindex = (pageNo - 1) * itemsPerPage;
+  endindex = pageNo * itemsPerPage;
+  arr = resetArray(startindex + 1, endindex, 1);
+};
+
+const handleButtons = (pageIndex) => {
+  previousButton.disabled = currentPage === 1;
+  nextButton.disabled = currentPage === totalPages;
+};
+
+const handleActivePageNumber = () => {
+  document.querySelectorAll(".button-class").forEach((button) => {
+    button.classList.remove("active");
+    const pageIndex = Number(button.getAttribute("id"));
+    if (pageIndex == currentPage) {
+      button.classList.add("active");
+    }
+  });
+};
+
+window.addEventListener("load", () => {
+  handleButtons();
+  handleActivePageNumber();
+  arrayPage(currentPage);
+  previousButton.addEventListener("click", () => {
+    arrayPage(currentPage > 1 ? currentPage - 1 : currentPage);
+  });
+  nextButton.addEventListener("click", () => {
+    arrayPage(currentPage < totalPages ? currentPage + 1 : currentPage);
+  });
+  document.querySelectorAll(".button-class").forEach((button) => {
+    const pgindex = Number(button.getAttribute("id"));
+    if (pgindex) {
+      button.addEventListener("click", () => {
+        arrayPage(pgindex);
+      });
+    }
+  });
+});
